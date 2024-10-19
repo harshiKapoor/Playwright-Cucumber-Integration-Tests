@@ -1,0 +1,22 @@
+{
+  "name": "playwright-cucumber-integration-tests",
+  "version": "1.0.0",
+  "description": "Playwright automation test suite using cucumber BDD framework",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harshiKapoor/playwright-cucumber-integration-tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harshiKapoor/playwright-cucumber-integration-tests/issues"
+  },
+  "homepage": "https://github.com/harshiKapoor/playwright-cucumber-integration-tests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.48.1",
+    "@types/node": "^22.7.7"
+  }
+}
