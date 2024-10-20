@@ -1,70 +1,46 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { test, expect } = require('@playwright/test');
-const { time } = require('console');
+const { PageManager } = require('../pages/PageManager');
 
+let pageManager;
 
 Given('User is on journey planner page', async function () {
-    await this.page.goto("https://jp.translink.com.au/plan-your-journey/journey-planner");
-    const searchPageTitle = await this.page.title();
-    expect(searchPageTitle.includes('Plan your journey')).toBeTruthy();
+    pageManager = new PageManager(this.page);
+    await pageManager.searchPage.goTo();
+    await pageManager.searchPage.verifyPageTitle();
 });
 
 
 When('User fills in start location', async function () {
-    await this.page.getByPlaceholder('Enter a start location', { name: 'startLocation' }).pressSequentially("springfield");
-    const dropdown = this.page.locator("ul#StartResults");
-    await dropdown.waitFor();
-    const optionsCount = await dropdown.locator("li").count();
-    for (let i = 0; i < optionsCount; i++) {
-        const text = await dropdown.locator("li").nth(i).textContent();
-        if (text === "Springfield Central station") {
-            await dropdown.locator("li").nth(i).click();
-            break;
-        }
-    }
-
+    await pageManager.searchPage.fillInStartLocation();
 });
 
 
 When('User fills in end loction', async function () {
-    await this.page.getByPlaceholder('Enter an end location').pressSequentially("Indro");
-    const dropdown = this.page.locator("ul#EndResults");
-    await dropdown.waitFor();
-    const optionsCount = await dropdown.locator("li").count();
-    for (let i = 0; i < optionsCount; i++) {
-        const text = await dropdown.locator("li").nth(i).textContent();
-        if (text === "Indooroopilly QLD") {
-            await dropdown.locator("li").nth(i).click();
-            break;
-        }
-    }
+    await pageManager.searchPage.fillInEndLocation();
 });
 
 
 
 When('User selects the date to travel', async function () {
-
-    const dateSelector = this.page.locator("[name='searchDate']")
-    await dateSelector.selectOption("Today (Sunday)");
+    await pageManager.searchPage.selectTravelDate();
 });
 
 
 
 When('User selects the time to travel', async function () {
-    const timeSelector = this.page.locator("#searchTime");
-    await timeSelector.selectOption("5:00pm");
+    await pageManager.searchPage.selectTravelTime();
 });
 
 
 
 When('User clicks on Find Journey', async function () {
-    await this.page.locator("#plan-journey-btn").click();
+    await pageManager.searchPage.clickFindJourneys();
 });
 
 
 
 Then('All valid journeys are displayed', async function () {
-    await this.page.locator('#travel-options').waitFor();
-    await expect(this.page.locator('#travel-options')).toBeVisible();
+    await pageManager.searchPage.verifyValidJourneys();
 
 });
