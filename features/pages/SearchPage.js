@@ -11,7 +11,6 @@ class SearchPage {
         this.endLocationDropDown = page.locator("ul#EndResults");
         this.startLocation = page.getByPlaceholder('Enter a start location', { name: 'startLocation' });
         this.startLocationDropDown = page.locator("ul#StartResults");
-
     }
 
     async goTo() {
@@ -23,41 +22,40 @@ class SearchPage {
         expect(searchPageTitle.includes('Plan your journey')).toBeTruthy();
     }
 
-    async fillInStartLocation() {
-        await this.startLocation.pressSequentially("springfield");
+    async fillInStartLocation(startLocation) {
+        await this.startLocation.pressSequentially(startLocation);
         const dropdown = this.page.locator("ul#StartResults");
         await dropdown.waitFor();
         const optionsCount = await dropdown.locator("li").count();
         for (let i = 0; i < optionsCount; i++) {
             const text = await dropdown.locator("li").nth(i).textContent();
-            if (text === "Springfield Central station") {
+            if (text === startLocation) {
                 await dropdown.locator("li").nth(i).click();
                 break;
             }
         }
     }
 
-    async fillInEndLocation() {
-        await this.endLocation.pressSequentially("Indro");
+    async fillInEndLocation(endLocation) {
+        await this.endLocation.pressSequentially(endLocation);
         const dropdown = this.page.locator("ul#EndResults");
         await dropdown.waitFor();
         const optionsCount = await dropdown.locator("li").count();
         for (let i = 0; i < optionsCount; i++) {
             const text = await dropdown.locator("li").nth(i).textContent();
-            if (text === "Indooroopilly QLD") {
+            if (text === endLocation) {
                 await dropdown.locator("li").nth(i).click();
                 break;
             }
         }
     }
 
-    async selectTravelDate() {
-        await this.dateSelector.selectOption("Tue, 22 Oct");
+    async selectTravelDate(travelDate) {
+        await this.dateSelector.selectOption(travelDate);
     }
 
-    async selectTravelTime() {
-
-        await this.timeSelector.selectOption("5:00pm");
+    async selectTravelTime(travelTime) {
+        await this.timeSelector.selectOption(travelTime);
     }
 
     async clickFindJourneys() {
@@ -65,11 +63,9 @@ class SearchPage {
     }
 
     async verifyValidJourneys() {
-
         await expect(this.travelOptions).toBeVisible();
         await this.travelOptions.waitFor();
     }
-
 }
 
 module.exports = { SearchPage };

@@ -10,11 +10,15 @@ Feature: Journey planner search functionality
     2. Start time of journey is same or more than time to travel provided by user.
 
 
-    Scenario: Verify search on journey planner returns valid journey
+    Scenario Outline: Verify search on journey planner returns valid journey
         Given User is on journey planner page
-        When User fills in start location
-        And User fills in end loction
-        And User selects the date to travel
-        And User selects the time to travel
+        When User fills in "<start>" as start location
+        And User fills in "<end>" as end loction
+        And User selects the "<travelDate>" as date to travel
+        And User selects the "<travelTime>" time to travel
         And User clicks on Find Journey
         Then All valid journeys are displayed
+
+        Examples:
+            | start                       | end               | travelDate  | travelTime |
+            | Springfield Central station | Indooroopilly QLD | Tue, 22 Oct | 5:00pm     |
