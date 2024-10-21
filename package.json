@@ -17,7 +17,8 @@
   "homepage": "https://github.com/harshiKapoor/playwright-cucumber-integration-tests#readme",
   "devDependencies": {
     "@playwright/test": "^1.48.1",
-    "@types/node": "^22.7.7"
+    "@types/node": "^22.7.7",
+    "dotenv": "^16.4.5"
   },
   "dependencies": {
     "@cucumber/cucumber": "^11.0.1"

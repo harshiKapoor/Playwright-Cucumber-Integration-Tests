@@ -1,12 +1,20 @@
-const { After, Before } = require('@cucumber/cucumber');
-const plwt = require('@playwright/test');
+const { After, Before, BeforeAll } = require('@cucumber/cucumber');
+const { getEnv } = require('../helper/env/EnvManager');
+const { BrowserManager } = require('../helper/browsers/BrowserManager')
+const { EnvManager } = require('../helper/env/EnvManager')
+
+let browser;
+let context;
+let browserManager = new BrowserManager()
+let envManager = new EnvManager()
+
+BeforeAll(async function () {
+    envManager.getEnv();
+    browser = await browserManager.invokeBrowser();
+});
 
 Before(async function () {
-
-    const browser = await plwt.chromium.launch({
-        headless: false,
-    });
-    const context = await browser.newContext();
+    context = await browser.newContext();
     this.page = await context.newPage();
 
 });
