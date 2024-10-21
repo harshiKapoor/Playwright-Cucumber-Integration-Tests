@@ -1,12 +1,12 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const { expect } = require('@playwright/test');
-const { PageManager } = require('../pages/PageManager');
+import { Given, When, Then } from "@cucumber/cucumber";
+import { PageManager } from "../pages/PageManager.js";
 
 let pageManager;
 
 Given('User is on journey planner page', async function () {
     pageManager = new PageManager(this.page);
     await pageManager.searchPage.goTo();
+    this.logger.info("navigating to search page");
     await pageManager.searchPage.verifyPageTitle();
 });
 
@@ -42,5 +42,6 @@ When('User clicks on Find Journey', async function () {
 
 Then('All valid journeys are displayed', async function () {
     await pageManager.searchPage.verifyValidJourneys();
+    this.logger.info("Finding journeys for your search");
 
 });

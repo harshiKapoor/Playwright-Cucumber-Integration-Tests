@@ -1,12 +1,15 @@
-const { After, Before, BeforeAll } = require('@cucumber/cucumber');
-const { getEnv } = require('../helper/env/EnvManager');
-const { BrowserManager } = require('../helper/browsers/BrowserManager')
-const { EnvManager } = require('../helper/env/EnvManager')
+import { After, Before, BeforeAll } from "@cucumber/cucumber";
+import { EnvManager } from '../helper/env/EnvManager.js';
+import { BrowserManager } from "../helper/browsers/BrowserManager.js";
+import { createLogger } from "winston";
+import { options } from "../../features/utils/logger.js";
+
 
 let browser;
 let context;
 let browserManager = new BrowserManager()
 let envManager = new EnvManager()
+
 
 BeforeAll(async function () {
     envManager.getEnv();
@@ -16,9 +19,9 @@ BeforeAll(async function () {
 Before(async function () {
     context = await browser.newContext();
     this.page = await context.newPage();
-
+    this.logger = createLogger(options("search"));
 });
 
 After(async function () {
-    console.log("Test execution done")
+    this.logger.info("Test execution done")
 });

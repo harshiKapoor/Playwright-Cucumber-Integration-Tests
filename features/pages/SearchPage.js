@@ -1,4 +1,4 @@
-const { expect } = require('@playwright/test');
+import { expect } from "@playwright/test";
 
 class SearchPage {
     constructor(page) {
@@ -11,6 +11,7 @@ class SearchPage {
         this.endLocationDropDown = page.locator("ul#EndResults");
         this.startLocation = page.getByPlaceholder('Enter a start location', { name: 'startLocation' });
         this.startLocationDropDown = page.locator("ul#StartResults");
+
     }
 
     async goTo() {
@@ -68,4 +69,4 @@ class SearchPage {
     }
 }
 
-module.exports = { SearchPage };
+export { SearchPage };

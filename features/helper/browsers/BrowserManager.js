@@ -1,4 +1,4 @@
-const { chromium, firefox, webkit } = require('@playwright/test');
+import { chromium, firefox, webkit } from "@playwright/test";
 
 class BrowserManager {
 
@@ -22,7 +22,4 @@ class BrowserManager {
 }
 
 
-
-
-module.exports = { BrowserManager };
-
+export { BrowserManager };

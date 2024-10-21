@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+import dotenv from "dotenv";
 
 class EnvManager {
 
@@ -16,4 +16,4 @@ class EnvManager {
 }
 
 
-module.exports = { EnvManager };
+export { EnvManager };

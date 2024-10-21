@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "playwright-cucumber-integration-tests",
   "version": "1.0.0",
   "description": "Playwright automation test suite using cucumber BDD framework",
@@ -18,7 +19,8 @@
   "devDependencies": {
     "@playwright/test": "^1.48.1",
     "@types/node": "^22.7.7",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "winston": "^3.15.0"
   },
   "dependencies": {
     "@cucumber/cucumber": "^11.0.1"

@@ -1,4 +1,4 @@
-const { SearchPage } = require('../pages/SearchPage');
+import { SearchPage } from "../pages/SearchPage.js";
 
 class PageManager {
 
@@ -12,4 +12,5 @@ class PageManager {
     }
 }
 
-module.exports = { PageManager };
+// module.exports = { PageManager };
+export { PageManager };

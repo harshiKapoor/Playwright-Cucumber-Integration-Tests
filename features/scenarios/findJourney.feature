@@ -21,4 +21,4 @@ Feature: Journey planner search functionality
 
         Examples:
             | start                       | end               | travelDate  | travelTime |
-            | Springfield Central station | Indooroopilly QLD | Tue, 22 Oct | 5:00pm     |
+            | Springfield Central station | Indooroopilly QLD | Wed, 23 Oct | 5:00pm     |
