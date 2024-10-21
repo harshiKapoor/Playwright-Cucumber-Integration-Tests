@@ -1,13 +1,17 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { PageManager } from "../pages/PageManager.js";
+import { CommonAsserts } from "../helper/utils/CommonAsserts.js";
 
 let pageManager;
+let commonAsserts;
 
 Given('User is on journey planner page', async function () {
     pageManager = new PageManager(this.page);
+    commonAsserts = new CommonAsserts(this.page);
     await pageManager.searchPage.goTo();
     this.logger.info("navigating to search page");
-    await pageManager.searchPage.verifyPageTitle();
+    //await pageManager.searchPage.verifyPageTitle();
+    commonAsserts.verifyPageTitle("Plan your journey | Translink");
 });
 
 

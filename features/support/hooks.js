@@ -2,7 +2,7 @@ import { After, Before, BeforeAll } from "@cucumber/cucumber";
 import { EnvManager } from '../helper/env/EnvManager.js';
 import { BrowserManager } from "../helper/browsers/BrowserManager.js";
 import { createLogger } from "winston";
-import { options } from "../../features/utils/logger.js";
+import { options } from "../helper/utils/logger.js";
 
 
 let browser;

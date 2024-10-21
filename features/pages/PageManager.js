@@ -5,6 +5,7 @@ class PageManager {
     constructor(page) {
         this.page = page;
         this.searchPage = new SearchPage(this.page);
+
     }
 
     async getSearchPage() {
@@ -12,5 +13,4 @@ class PageManager {
     }
 }
 
-// module.exports = { PageManager };
 export { PageManager };
