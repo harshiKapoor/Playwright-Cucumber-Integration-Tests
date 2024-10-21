@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { createDate } from "../helper/utils/DateCreator.js";
 
 class SearchPage {
     constructor(page) {
@@ -16,11 +17,6 @@ class SearchPage {
 
     async goTo() {
         await this.page.goto(process.env.BASEURL);
-    }
-
-    async verifyPageTitle() {
-        const searchPageTitle = await this.page.title();
-        expect(searchPageTitle.includes('Plan your journey')).toBeTruthy();
     }
 
     async fillInStartLocation(startLocation) {
@@ -52,7 +48,8 @@ class SearchPage {
     }
 
     async selectTravelDate(travelDate) {
-        await this.dateSelector.selectOption(travelDate);
+        const customDate = createDate(travelDate);
+        await this.dateSelector.selectOption(customDate);
     }
 
     async selectTravelTime(travelTime) {
