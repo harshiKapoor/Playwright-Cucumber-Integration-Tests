@@ -1,4 +1,3 @@
-
 export function createDate(travelDate) {
 
     const fullDate = new Date();
@@ -32,7 +31,13 @@ export function createDate(travelDate) {
     switch (travelDate) {
         case "Tomorrow":
             date = fullDate.getDate() + 1;
-            day = dayDictionary[fullDate.getDay() + 1];
+            const dayOfWeek = fullDate.getDay() + 1;
+            if (dayOfWeek >= 7) {
+                day = dayDictionary[0];
+            }
+            day = dayDictionary[dayOfWeek];
+
+
             month = monthDictionary[fullDate.getMonth() + 1];
             break;
         case "Day After Tomorrow":
