@@ -1,6 +1,6 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { PageManager } from "../../pages/PageManager.js";
-import { CommonAsserts } from "../../helper/utils/CommonAsserts.js";
+import { PageManager } from "../../../src/pages/PageManger.js";
+import { CommonAsserts } from "../../../src/helper/utils/CommonAsserts.js";
 
 let pageManager;
 let commonAsserts;
@@ -9,7 +9,6 @@ let searchPage;
 
 Given('User is on journey planner page', async function () {
     pageManager = new PageManager(this.page);
-    pageManager.getSearchPage
     commonAsserts = new CommonAsserts(this.page);
     searchPage = await pageManager.getSearchPage();
     await searchPage.goTo();

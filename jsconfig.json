@@ -5,7 +5,7 @@
         ],
         "typeRoots": [
             "./node_modules/@types",
-            "features/helper/types"
+            "src/helper/types"
         ],
         "resolveJsonModule": true
     }

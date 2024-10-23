@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
+import 'dotenv/config'
 
 class EnvManager {
 
     async getEnv() {
+
         if (process.env.ENV) {
             dotenv.config({
                 override: true,

@@ -18,7 +18,7 @@ class SearchPage {
     }
 
     async goTo() {
-        await this.page.goto(process.env.BASEURL);
+        await this.page.goto("https://jp.translink.com.au/plan-your-journey/journey-planner");
     }
 
     async enterStartLocation(startLocation) {

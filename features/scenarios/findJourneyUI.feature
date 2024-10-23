@@ -1,4 +1,4 @@
-@Journey_Planner @Search_Journey_Planner @UI
+@Journey_Planner @Search_Journey @UI
 
 Feature: Journey planner search functionality
 
@@ -8,7 +8,7 @@ Feature: Journey planner search functionality
 
     1. Start time of journey is same or more than time to travel provided by user.
 
-
+    @Search_Journey_Valid_Check
     Scenario Outline: Verify search on journey planner returns valid journey
         Given User is on journey planner page
         When User provides "<departing_station>" as start location

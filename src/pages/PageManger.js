@@ -1,4 +1,4 @@
-import { SearchPage } from "../pages/SearchPage.js";
+import { SearchPage } from "../pages/SearchPage.js"
 
 class PageManager {
 
