@@ -1,4 +1,4 @@
-@Journey_Planner @Search_Journey_Planner
+@Journey_Planner @Search_Journey_Planner @UI
 
 Feature: Journey planner search functionality
 

@@ -1,6 +1,6 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { PageManager } from "../pages/PageManager.js";
-import { CommonAsserts } from "../helper/utils/CommonAsserts.js";
+import { PageManager } from "../../pages/PageManager.js";
+import { CommonAsserts } from "../../helper/utils/CommonAsserts.js";
 
 let pageManager;
 let commonAsserts;
