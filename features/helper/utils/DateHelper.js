@@ -1,6 +1,6 @@
-import { dayDictionary, monthDictionary } from "./DateBuilderHelper.js"
+import { dayDictionary, monthDictionary } from "./DateConsts.js"
 
-export function createDate(travelDate) {
+function createDate(travelDate) {
 
     const fullDate = new Date();
     let date;
@@ -24,9 +24,19 @@ export function createDate(travelDate) {
             break;
     }
 
-
     const customDate = `${day}, ${date} ${month}`
     return customDate;
 
+}
+//actualDepTime = 5:09pm
+// userPreferredDepTime = 5:00pm
+function compareDate(actualDepTime, userPreferredDepTime) {
+    let actualTime = actualDepTime.split(':');
+    let preferredTime = userPreferredDepTime.split(":");
+    let actualTimeInMins = parseInt(actualTime[0] * 3600 + actualTime[1]);
+    let preferredTimeInMins = parseInt(preferredTime[0] * 3600 + preferredTime[1]);
+    return actualTimeInMins > preferredTimeInMins
+
 
 }
+export { createDate, compareDate }

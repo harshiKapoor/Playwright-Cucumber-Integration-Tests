@@ -19,7 +19,7 @@ BeforeAll(async function () {
 Before(async function () {
     context = await browser.newContext();
     this.page = await context.newPage();
-    this.logger = createLogger(options("search"));
+    this.logger = createLogger(options(" Searching journeys "));// TODO remove hardcoded scenario name 
 });
 
 After(async function () {

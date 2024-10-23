@@ -4,48 +4,44 @@ import { CommonAsserts } from "../helper/utils/CommonAsserts.js";
 
 let pageManager;
 let commonAsserts;
+let searchPage;
+
 
 Given('User is on journey planner page', async function () {
     pageManager = new PageManager(this.page);
+    pageManager.getSearchPage
     commonAsserts = new CommonAsserts(this.page);
-    await pageManager.searchPage.goTo();
+    searchPage = await pageManager.getSearchPage();
+    await searchPage.goTo();
     this.logger.info("navigating to search page");
-    //await pageManager.searchPage.verifyPageTitle();
     commonAsserts.verifyPageTitle("Plan your journey | Translink");
 });
 
-
-When('User fills in {string} as start location', async function (startLocation) {
-    await pageManager.searchPage.fillInStartLocation(startLocation);
+When('User provides {string} as start location', async function (departingStation) {
+    await searchPage.enterStartLocation(departingStation);
 });
 
-
-When('User fills in {string} as end loction', async function (endLocation) {
-    await pageManager.searchPage.fillInEndLocation(endLocation);
+When('User provides an {string} as end location', async function (arrivingStation) {
+    await searchPage.enterEndLocation(arrivingStation);
 });
 
-
-
-When('User selects the {string} as date to travel', async function (travelDate) {
-    await pageManager.searchPage.selectTravelDate(travelDate);
+When('User provides a {string} to search for journeys', async function (travelDate) {
+    await searchPage.selectTravelDate(travelDate)
 });
 
-
-
-When('User selects the {string} time to travel', async function (travelTime) {
-    await pageManager.searchPage.selectTravelTime(travelTime);
+When('User provides a preferred {string}', async function (travelTime) {
+    await searchPage.selectTravelTime(travelTime)
 });
 
-
-
-When('User clicks on Find Journey', async function () {
-    await pageManager.searchPage.clickFindJourneys();
+When('User clicks to find journeys', async function () {
+    await searchPage.clickFindJourneys();
 });
 
+Then('Journeys are displayed', async function () {
+    await searchPage.verifyTravelOptionsAreDisplayed();
+});
 
-
-Then('All valid journeys are displayed', async function () {
-    await pageManager.searchPage.verifyValidJourneys();
-    this.logger.info("Finding journeys for your search");
-
+Then('Travel options returned have startTime later than {string} provided by user', async function (userPreferredStartTime) {
+    await searchPage.verifyTravelOptionDepartureTime(userPreferredStartTime);
+    this.logger.info("Finding journeys for your search...");
 });

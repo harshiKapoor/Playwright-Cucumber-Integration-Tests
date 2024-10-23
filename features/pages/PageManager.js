@@ -8,7 +8,7 @@ class PageManager {
 
     }
 
-    async getSearchPage() {
+    getSearchPage() {
         return this.searchPage;
     }
 }

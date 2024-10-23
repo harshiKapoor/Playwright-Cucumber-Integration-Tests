@@ -1,17 +1,19 @@
 import { expect } from "@playwright/test";
-import { createDate } from "../helper/utils/DateBuilder.js";
+import { createDate, compareDate } from "../helper/utils/DateHelper.js";
 
 class SearchPage {
     constructor(page) {
         this.page = page;
-        this.dateSelector = page.locator("[name='searchDate']");
-        this.timeSelector = page.locator("#searchTime");
+        this.dateSelector = page.getByLabel('Date')
+        this.timeSelector = page.getByLabel('Select a travel time from the drop down');
         this.findJourneyButton = page.locator("#plan-journey-btn");
         this.travelOptions = page.locator('#travel-options');
-        this.endLocation = page.getByPlaceholder('Enter an end location');
-        this.endLocationDropDown = page.locator("ul#EndResults");
+        this.endLocation = page.getByPlaceholder('Enter an end location', { name: 'endLocation' });
+        this.endLocationDropDown = page.locator("#EndResults");
         this.startLocation = page.getByPlaceholder('Enter a start location', { name: 'startLocation' });
-        this.startLocationDropDown = page.locator("ul#StartResults");
+        this.startLocationDropDown = page.locator("#StartResults");
+        this.travelOptionDepartureTime = page.locator("#travel-option-title-content >> li").first();
+        this.travelOptionArrivalTime = page.locator("#travel-option-title-content >> li").last();
 
     }
 
@@ -19,29 +21,27 @@ class SearchPage {
         await this.page.goto(process.env.BASEURL);
     }
 
-    async fillInStartLocation(startLocation) {
+    async enterStartLocation(startLocation) {
         await this.startLocation.pressSequentially(startLocation);
-        const dropdown = this.page.locator("ul#StartResults");
-        await dropdown.waitFor();
-        const optionsCount = await dropdown.locator("li").count();
+        await this.startLocationDropDown.waitFor();
+        const optionsCount = await this.startLocationDropDown.locator("li").count();
         for (let i = 0; i < optionsCount; i++) {
-            const text = await dropdown.locator("li").nth(i).textContent();
+            const text = await this.startLocationDropDown.locator("li").nth(i).textContent();
             if (text === startLocation) {
-                await dropdown.locator("li").nth(i).click();
+                await this.startLocationDropDown.locator("li").nth(i).click();
                 break;
             }
         }
     }
 
-    async fillInEndLocation(endLocation) {
+    async enterEndLocation(endLocation) {
         await this.endLocation.pressSequentially(endLocation);
-        const dropdown = this.page.locator("ul#EndResults");
-        await dropdown.waitFor();
-        const optionsCount = await dropdown.locator("li").count();
+        await this.endLocationDropDown.waitFor();
+        const optionsCount = await this.endLocationDropDown.locator("li").count();
         for (let i = 0; i < optionsCount; i++) {
-            const text = await dropdown.locator("li").nth(i).textContent();
+            const text = await this.endLocationDropDown.locator("li").nth(i).textContent();
             if (text === endLocation) {
-                await dropdown.locator("li").nth(i).click();
+                await this.endLocationDropDown.locator("li").nth(i).click();
                 break;
             }
         }
@@ -60,7 +60,13 @@ class SearchPage {
         await this.findJourneyButton.click();
     }
 
-    async verifyValidJourneys() {
+    async verifyTravelOptionDepartureTime(userPreferredDepTime) {
+        let actualDepTime = (await (this.travelOptionDepartureTime).first().textContent());
+        actualDepTime = actualDepTime.split(" ")[1];  // removing 'Start' from returned 'Start 5:09pm
+        expect(compareDate(actualDepTime, userPreferredDepTime)).toBeTruthy(); // 5:09pm  , 5:00pm
+    }
+
+    async verifyTravelOptionsAreDisplayed() {
         await expect(this.travelOptions).toBeVisible();
         await this.travelOptions.waitFor();
     }

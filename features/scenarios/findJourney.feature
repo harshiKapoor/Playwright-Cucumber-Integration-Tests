@@ -6,19 +6,20 @@ Feature: Journey planner search functionality
     User should be able to find valid travel journey from start to end location when searching on the journey planner.
     Journey returned to user in search results is called valid only when -
 
-    1. It has Start and end location same as searched by user.
-    2. Start time of journey is same or more than time to travel provided by user.
+    1. Start time of journey is same or more than time to travel provided by user.
 
 
     Scenario Outline: Verify search on journey planner returns valid journey
         Given User is on journey planner page
-        When User fills in "<start>" as start location
-        And User fills in "<end>" as end loction
-        And User selects the "<travelDate>" as date to travel
-        And User selects the "<travelTime>" time to travel
-        And User clicks on Find Journey
-        Then All valid journeys are displayed
+        When User provides "<departing_station>" as start location
+        And User provides an "<arriving_station>" as end location
+        And User provides a "<travel_date>" to search for journeys
+        And User provides a preferred "<travel_time>"
+        And User clicks to find journeys
+        Then Journeys are displayed
+        And Travel options returned have startTime later than "<travel_time>" provided by user
+
 
         Examples:
-            | start                       | end               | travelDate | travelTime |
-            | Springfield Central station | Indooroopilly QLD | Tomorrow   | 5:00pm     |
+            | departing_station           | arriving_station  | travel_date | travel_time |
+            | Springfield Central station | Indooroopilly QLD | Tomorrow    | 5:00pm      |
