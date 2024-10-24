@@ -1,4 +1,4 @@
-# playwright-cucumber-integration-tests
+# Playwright-Cucumber-Integration-Tests
 
 Playwright (JS) automation test suite using cucumber BDD framework
 

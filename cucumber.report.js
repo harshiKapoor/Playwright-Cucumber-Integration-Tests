@@ -8,7 +8,6 @@ const options = {
     output: 'reports/report.html',
     reportSuiteAsScenarios: true,
     scenarioTimestamp: true,
-    // screenshotsDirectory: 'reports/screenshots/',
     storeScreenshots: true,
     theme: 'bootstrap',
 };
