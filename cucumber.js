@@ -1,8 +1,8 @@
-
-const config = `
-  --format json:./reports/cucumber-html-reporter.json
-  --format message:./reports/cucumber-html-reporter.ndjson
-  --format html:./reports/report.html
-  `;
-
-export default config;
+export default {
+  format: [
+    'html:reports/cucumber-report.html',
+    'json:reports/cucumber-report.json',
+    'rerun:@rerun.txt'
+  ],
+  parallel: 2
+}

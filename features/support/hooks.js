@@ -21,7 +21,7 @@ Before(async function ({ pickle }) {
     const scenarioName = pickle.name;
     context = await browser.newContext();
     this.page = await context.newPage();
-    this.logger = createLogger(options(scenarioName));// TODO remove hardcoded scenario name 
+    this.logger = createLogger(options(scenarioName));
     this.logger.info(`Running tests in ${process.env.ENV}`);
 });
 
