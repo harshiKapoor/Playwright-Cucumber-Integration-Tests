@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
+import { devices } from '@playwright/test';
 
 /**
  * Read environment variables from file.
@@ -10,7 +10,7 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-module.exports = defineConfig({
+const config = ({
 
   testDir: './tests',
 
@@ -24,6 +24,9 @@ module.exports = defineConfig({
 
   use: {
     trace: 'on-first-retry',
+    browserName: 'chromium',
+    headless: true,
+    screenshot: 'on',
   },
 
   /* Configure projects for major browsers */
@@ -71,4 +74,7 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
+export { config }
+
 
