@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  playwright-cucumber-test:
+    build:
+      context: .
+      dockerfile: dockerfile
+    environment:
+      - ENV=prod
