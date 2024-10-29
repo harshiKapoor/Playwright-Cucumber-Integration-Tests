@@ -2,6 +2,10 @@
 
 Playwright (JS) automation test suite using cucumber BDD framework
 
+## Project Description
+
+This project is showcasing how by bringing in cucumber BDD framework with robust playwright framework, we can have easy to maintain tests that are stable on ci pipelines . For demo purposes, have used translink app https://jp.translink.com.au/plan-your-journey/journey-planner
+
 ## Features
 
 1. Playwright with cucumber integration
