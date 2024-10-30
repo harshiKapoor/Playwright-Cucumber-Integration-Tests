@@ -1,16 +1,15 @@
-import { After, Before, BeforeAll } from "@cucumber/cucumber";
+import { After, Before, BeforeAll, setDefaultTimeout } from "@cucumber/cucumber";
 import { EnvManager } from '../../src/helper/env/EnvManager.js';
 import { BrowserManager } from "../../src/helper/browsers/BrowserManager.js";
 import { createLogger } from "winston";
 import { options } from "../../src/helper/utils/logger.js";
 
-
+setDefaultTimeout(60 * 1000);
 
 let browser;
 let context;
 let browserManager = new BrowserManager();
 let envManager = new EnvManager();
-
 
 BeforeAll(async function () {
     envManager.getEnv();

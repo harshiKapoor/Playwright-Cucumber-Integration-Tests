@@ -1,6 +1,7 @@
 import { expect } from "@playwright/test";
 import { createDate, compareDate } from "../helper/utils/DateHelper.js";
 
+// TODO - I would prefer to use data-testid attributes for locators , but since don't own this codebase , have to use other locators
 class SearchPage {
     constructor(page) {
         this.page = page;
@@ -14,6 +15,8 @@ class SearchPage {
         this.startLocationDropDown = page.locator("#StartResults");
         this.travelOptionDepartureTime = page.locator("#travel-option-title-content >> li").first();
         this.travelOptionArrivalTime = page.locator("#travel-option-title-content >> li").last();
+        this.timeSearchModeButtonLeaveAfter = page.getByRole('radio', { name: 'Leave After' });
+        this.timeSearchModeButtonArriveBefore = page.getByRole('radio', { name: 'Arrive before' });
 
     }
 
@@ -67,8 +70,14 @@ class SearchPage {
     }
 
     async verifyTravelOptionsAreDisplayed() {
+        await this.travelOptions.waitFor();
         await expect(this.travelOptions).toBeVisible();
         await this.travelOptions.waitFor();
+    }
+
+    async confirmLeaveAfterIsSelected() {
+        await expect(this.timeSearchModeButtonLeaveAfter).toBeChecked();
+
     }
 }
 

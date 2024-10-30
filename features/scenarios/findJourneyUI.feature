@@ -8,12 +8,13 @@ Feature: Journey planner search functionality
 
     1. Start time of journey is same or more than time to travel provided by user.
 
-    @Search_Journey_Valid_Check
+    @Search_Journey_LeaveAfter_Valid_Check
     Scenario Outline: Verify search on journey planner returns valid journey
         Given User is on journey planner page
         When User provides "<departing_station>" as start location
         And User provides an "<arriving_station>" as end location
         And User provides a "<travel_date>" to search for journeys
+        And User confirms LeaveAfter time search mode is selected
         And User provides a preferred "<travel_time>"
         And User clicks to find journeys
         Then Journeys are displayed
@@ -23,3 +24,4 @@ Feature: Journey planner search functionality
         Examples:
             | departing_station           | arriving_station  | travel_date | travel_time |
             | Springfield Central station | Indooroopilly QLD | Tomorrow    | 5:00pm      |
+            | Nerang station              | Robina station    | Tomorrow    | 11:30am     |

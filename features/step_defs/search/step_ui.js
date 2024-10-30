@@ -28,6 +28,10 @@ When('User provides a {string} to search for journeys', async function (travelDa
     await searchPage.selectTravelDate(travelDate)
 });
 
+When('User confirms LeaveAfter time search mode is selected', async function () {
+    await searchPage.confirmLeaveAfterIsSelected()
+});
+
 When('User provides a preferred {string}', async function (travelTime) {
     await searchPage.selectTravelTime(travelTime)
 });
@@ -44,3 +48,4 @@ Then('Travel options returned have startTime later than {string} provided by use
     await searchPage.verifyTravelOptionDepartureTime(userPreferredStartTime);
     this.logger.info("Finding journeys for your search...");
 });
+
