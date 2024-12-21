@@ -1,12 +1,12 @@
-# Playwright-Cucumber-Integration-Tests
+# Playwright-Cucumber-Integration-Tests :
 
 Playwright (JS) automation test suite using cucumber BDD framework
 
-## Project Description
+## Project Description :
 
 This project is showcasing how by bringing in cucumber BDD framework with robust playwright framework, we can have easy to maintain tests that are stable on ci pipelines . For demo purposes, have used translink app https://jp.translink.com.au/plan-your-journey/journey-planner
 
-## Features
+## Features :
 
 1. Playwright with cucumber integration
 2. Generate test reports
@@ -18,7 +18,7 @@ This project is showcasing how by bringing in cucumber BDD framework with robust
 8. Page object model implemented for easy maintainence
 9. Github actions
 
-# Project structure
+# Project structure :
 
 - .github > execute tests on CI
 - features > cucumber test scenarios with step defination and hooks
@@ -26,7 +26,7 @@ This project is showcasing how by bringing in cucumber BDD framework with robust
 - reports > cucumber html report
 - logs > test logs
 
-### Folder structure
+### Folder structure :
 
 1. `features\scenarios\*` -> cucumber feature files
 2. `features\step_defs\**\*` -> cucumber step def files
@@ -41,16 +41,16 @@ This project is showcasing how by bringing in cucumber BDD framework with robust
 11. `cucumber.js` -> contains configuration for reporting and parallel execution
 12. `package.json` -> Contains all the dependencies
 
-## Get Started
+## Get Started :
 
-### Setup:
+### Setup :
 
 1. `npm i` to install the dependencies
 2. `npx playwright install` to install the browsers
 3. `npm run test` to execute all the tests
 4. `npm run test features/scenario/*.feature` to run particular feature file
 
-### To generate custom cucumber test report
+### To generate custom cucumber test report :
 
 1. `npm run test`
 2. `node cucumber.report.js `
